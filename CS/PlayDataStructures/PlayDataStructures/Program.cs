@@ -58,15 +58,44 @@ namespace PlayDataStructures
 
 			/********************************************/
 
-			int opCount = 100000;
+			//int opCount = 100000;
 
-			ArrayQueue<int> arrayQueue = new ArrayQueue<int>();
-			double time1 = TestQueue(arrayQueue, opCount);
-			Console.WriteLine("ArrayQueue, time: " + time1 + " s");
+			//ArrayQueue<int> arrayQueue = new ArrayQueue<int>();
+			//double time1 = TestQueue(arrayQueue, opCount);
+			//Console.WriteLine("ArrayQueue, time: " + time1 + " s");
 
-			LoopQueue<int> loopQueue = new LoopQueue<int>();
-			double time2 = TestQueue(loopQueue, opCount);
-			Console.WriteLine("LoopQueue, time: " + time2 + " s");
+			//LoopQueue<int> loopQueue = new LoopQueue<int>();
+			//double time2 = TestQueue(loopQueue, opCount);
+			//Console.WriteLine("LoopQueue, time: " + time2 + " s");
+
+			/********************************************/
+
+			//LinkedListStack<int> stack = new LinkedListStack<int>();
+
+			//for (int i = 0; i < 5; i++)
+			//{
+			//	stack.Push(i);
+			//	Console.WriteLine(stack);
+			//}
+
+			//stack.Pop();
+			//Console.WriteLine(stack);
+
+			/********************************************/
+
+			LinkedListQueue<int> q = new LinkedListQueue<int>();
+
+			for (int i = 0; i < 10; i++)
+			{
+				q.Enqueue(i);
+				Console.WriteLine(q);
+
+				if (i % 3 == 2)
+				{
+					q.Dequeue();
+					Console.WriteLine(q);
+				}
+			}
 		}
 
 		private static double TestQueue(IQueue<int> q, int opCount)
