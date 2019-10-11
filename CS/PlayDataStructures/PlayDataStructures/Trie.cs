@@ -44,6 +44,7 @@ namespace PlayDataStructures
 
 		public void Add(string word)
 		{
+			// Add(root, word, 0);
 			Node cur = root;
 
 			for (int i = 0; i < word.Length; i++)
@@ -60,8 +61,27 @@ namespace PlayDataStructures
 			}
 		}
 
+		private void Add(Node node, string word, int index)
+		{
+			if (index == word.Length)
+			{
+				if (!node.IsWord)
+				{
+					node.IsWord = true;
+					Size++;
+				}
+				return;
+			}
+
+			if (!node.Next.ContainsKey(word[index]))
+				node.Next.Add(word[index], new Node());
+
+			Add(node.Next[word[index]], word, index + 1);
+		}
+
 		public bool Contains(string word)
 		{
+			// return Contains(root, word, 0);
 			Node cur = root;
 			for (int i = 0; i < word.Length; i++)
 			{
@@ -71,6 +91,17 @@ namespace PlayDataStructures
 			}
 
 			return cur.IsWord;
+		}
+
+		private bool Contains(Node node, string word, int index)
+		{
+			if (index == word.Length)
+				return node.IsWord;
+
+			if (!node.Next.ContainsKey(word[index]))
+				return false;
+
+			return Contains(node.Next[word[index]], word, index + 1);
 		}
 
 		// 查询是否在Trie中有单词以prefix为前缀
@@ -84,6 +115,17 @@ namespace PlayDataStructures
 				cur = cur.Next[prefix[i]];
 			}
 			return true;
+		}
+
+		private bool HasPrefix(Node node, string prefix, int index)
+		{
+			if (index == prefix.Length)
+				return true;
+
+			if (!node.Next.ContainsKey(prefix[index]))
+				return false;
+
+			return HasPrefix(node.Next[prefix[index]], prefix, index + 1);
 		}
 
 		#endregion Methods
