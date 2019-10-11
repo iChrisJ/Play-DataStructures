@@ -83,19 +83,30 @@ namespace PlayDataStructures
 
 			/********************************************/
 
-			LinkedListQueue<int> q = new LinkedListQueue<int>();
+			//LinkedListQueue<int> q = new LinkedListQueue<int>();
 
-			for (int i = 0; i < 10; i++)
-			{
-				q.Enqueue(i);
-				Console.WriteLine(q);
+			//for (int i = 0; i < 10; i++)
+			//{
+			//	q.Enqueue(i);
+			//	Console.WriteLine(q);
 
-				if (i % 3 == 2)
-				{
-					q.Dequeue();
-					Console.WriteLine(q);
-				}
-			}
+			//	if (i % 3 == 2)
+			//	{
+			//		q.Dequeue();
+			//		Console.WriteLine(q);
+			//	}
+			//}
+
+			/********************************************/
+
+			int[] nums = new int[] { -2, 0, 3, -5, 2, -1 };
+
+			SegmentTree<int> segTree = new SegmentTree<int>(nums, (a, b) => a + b);
+
+			Console.WriteLine(segTree);
+			Console.WriteLine(segTree.Query(0, 2));
+			Console.WriteLine(segTree.Query(2, 5));
+			Console.WriteLine(segTree.Query(0, 5));
 		}
 
 		private static double TestQueue(IQueue<int> q, int opCount)
